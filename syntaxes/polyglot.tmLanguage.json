@@ -1,0 +1,94 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Polyglot",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.polyglot",
+					"match": "=>|\\b(if|elif|else|while|for|in|match)\\b|\\s\\b(end)\\b"
+				},
+				{
+					"name": "keyword.polyglot",
+					"match": "\\b(fn|ret|end)\\b"
+				},
+				{
+					"name": "constant.language.bool.polyglot",
+					"match": "\\b(true|false)\\b"
+				},
+				{
+					"name": "entity.name.type.polyglot",
+					"match": "\\b(int|num|bool|char|str)\\b|(?<=type )\\b\\w+\\b|(?<=var \\b\\w+\\b( )*:( )*)\\b\\w+\\b|(?<=: )\\b\\w+\\b"
+				},
+				{
+					"name": "meta.function.definition.polyglot entity.name.function.polyglot",
+					"match": "(?<=fn)( )*\\w+"
+				},
+				{
+					"name": "meta.function.call.polyglot entity.name.function.polyglot",
+					"match": "\\w+( )*(?=\\()"
+				},
+				{
+					"name": "variable.parameter.polyglot meta.struct.member.polyglot source.polyglot",
+					"match": "(?<=\\w\\.)\\w+"
+				},
+				{
+					"name": "storage.polyglot",
+					"match": "\\b(var|type)\\b"
+				},
+				{
+					"name": "comment.polyglot",
+					"match": "//.*"
+				},
+				{
+					"name": "keyword.operator.polyglot",
+					"match": "(>)|(<)|(=)|(>=)|(<=)|(:)|(&&)|(\\|\\|)|(\\+)|(-)|(\\*)|(/)|(%)|(\\.)"
+				},
+				{
+					"name": "constant.numeric.polyglot",
+					"match": "\\d"
+				},
+				{
+					"name": "variable.other.polyglot",
+					"match": "\\w"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.polyglot",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.polyglot",
+					"match": "\\\\."
+				},
+				{
+					"name": "string.interpolated.brackets.polyglot keyword.operator.polyglot",
+					"match": "{|}"
+				},
+				{
+					"name": "string.interpolated.polyglot keyword.operator.polyglot",
+					"match": "\\."
+				},
+				{
+					"name": "string.interpolated.polyglot variable.parameter.polyglot meta.struct.member.polyglot source.polyglot",
+					"match": "(?<={\\w+\\.)\\w+(?=})"
+				},
+				{
+					"name": "string.interpolated.polyglot variable.other.polyglot",
+					"match": "(?<={)\\w+(?=(\\.\\w+)?})"
+				}
+			]
+		}
+	},
+	"scopeName": "main.pg"
+}
